@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -8,10 +9,13 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Popup;
 import javax.swing.SwingConstants;
 
 
@@ -78,31 +82,80 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
       JFrame frame = new PolarizedLadder();
       frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
       frame.pack();
-      frame.setResizable(true);
+      frame.setResizable(false);
       frame.setLocationRelativeTo( null );
       frame.setVisible(true);
    }
 
 
-	public void store2DResult(String [] resultin)
+	public void store2DResult(String [] resultin , int x ,int y)
 	{
 		int k = 0;
 		for(int i = 0; i < 8; i ++)
 		{
 			for (int j = 0; j<14 ; j++)
 			{
-				gameresult [i][j] = resultin [k];
+				this.gameresult [i][j] = resultin [k];
 				k++;
 			}
 		}
+		gameverifier( x , y);
 	}
 
 	
-	public void gameverifier(String [][] resultin)
+	public void gameverifier(int clickedx, int clickedy)
 	{
 		
+		// left polarizedladder test 
+	   for (int i = 0; i<8 ; i++)
+	   {
+		   for (int j=0; j<14; j++)
+		   {
+			   if(this.gameresult[i][j].equals(this.gameresult[clickedx][clickedy]))
+			   {
+				  if(checkPolarized(i, j,gameresult[clickedx][clickedy].toString()) == true)
+					  {
+					        String popup = gameresult[clickedx][clickedy].toString()+"  Wins!";
+					        JOptionPane.showMessageDialog(this.chessBoard, popup, "Game Over",
+					                JOptionPane.WARNING_MESSAGE);
+					        
+					        
+					       
+					       
+					  }
+					 
+				   
+			   }
+		   }
+	   }
+	   
 	}
 	
+	private boolean checkPolarized(int x, int y, String role) {
+		
+		// TODO Auto-generated method stub
+		boolean checkPolarized = false;
+   
+		
+	
+			
+			
+			if ( x<14 && x>0 && y<8 && y>0 && this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y+1].equals(role) && this.gameresult[x+2][y+2].equals(role))
+			{
+				checkPolarized =  true;				
+			}
+		
+			if ( x<14 && x>0 && y<8 && y>0 && this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y-1].equals(role) && this.gameresult[x+2][y-2].equals(role))
+			{
+				checkPolarized =  true;				
+			}
+		
+		
+		return checkPolarized;
+
+	}
+
+
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -110,7 +163,6 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		int y = arg0.getY()/60;;
 	    int role = rolecount % 2; 
 		int clickedsquare = x + y*14;
-		System.out.println(rolecount);
 		if( this.multi[clickedsquare].equals("1") && role == 0)
 		{
 		this.chessBoard.getComponent(clickedsquare).setBackground(Color.BLACK);
@@ -123,7 +175,8 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		this.multi[clickedsquare] = "yellow";
 		rolecount++;
 		}
-		store2DResult(this.multi);
+		store2DResult(this.multi , y , x);
+		
 		
 	}
 
