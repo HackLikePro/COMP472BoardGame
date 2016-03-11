@@ -140,12 +140,13 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 	
 			
 			
-			if ( x<14 && x>0 && y<8 && y>0 && this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y+1].equals(role) && this.gameresult[x+2][y+1].equals(role) && this.gameresult[x+2][y+2].equals(role))
+			if ( this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y+1].equals(role) && this.gameresult[x+2][y+1].equals(role) && this.gameresult[x+2][y+2].equals(role))
 			{
-				checkPolarized =  true;				
+				checkPolarized =  true;		
+				
 			}
 		
-			if ( x<14 && x>0 && y<8 && y>0 && this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y-1].equals(role) && this.gameresult[x+2][y-1].equals(role) && this.gameresult[x+2][y-2].equals(role))
+			if ( this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y-1].equals(role) && this.gameresult[x+2][y-1].equals(role) && this.gameresult[x+2][y-2].equals(role))
 			{
 				checkPolarized =  true;				
 			}
