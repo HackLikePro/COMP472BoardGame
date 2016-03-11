@@ -20,6 +20,7 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 	   public JPanel chessBoard;
 	   public JLabel chessPiece;
 	   public JLayeredPane layeredPane;
+	   public String [][] gameresult = new String [8][14];  
 	   public static String[] multi = new String[]
 		   {"7 ", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0","0","0",
 		    "6 ", "0", "0", "0", "0", "0", "1", "1", "1", "0", "0", "0","0","0",
@@ -83,9 +84,24 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
    }
 
 
-	
+	public void store2DResult(String [] resultin)
+	{
+		int k = 0;
+		for(int i = 0; i < 8; i ++)
+		{
+			for (int j = 0; j<14 ; j++)
+			{
+				gameresult [i][j] = resultin [k];
+				k++;
+			}
+		}
+	}
 
 	
+	public void gameverifier(String [][] resultin)
+	{
+		
+	}
 	
 	@Override
 	public void mousePressed(MouseEvent arg0) {
@@ -107,6 +123,7 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		this.multi[clickedsquare] = "yellow";
 		rolecount++;
 		}
+		store2DResult(this.multi);
 		
 	}
 
