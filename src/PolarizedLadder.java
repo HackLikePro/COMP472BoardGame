@@ -92,17 +92,20 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		// TODO Auto-generated method stub
 		int x = arg0.getX()/60;
 		int y = arg0.getY()/60;;
-		rolecount++;
 	    int role = rolecount % 2; 
 		int clickedsquare = x + y*14;
 		System.out.println(rolecount);
 		if( this.multi[clickedsquare].equals("1") && role == 0)
 		{
 		this.chessBoard.getComponent(clickedsquare).setBackground(Color.BLACK);
+		this.multi[clickedsquare] = "black";
+		rolecount++;
 		}
 		else if( this.multi[clickedsquare].equals("1") && role == 1) 
 		{
-		this.chessBoard.getComponent(clickedsquare).setBackground(Color.yellow);	
+		this.chessBoard.getComponent(clickedsquare).setBackground(Color.yellow);
+		this.multi[clickedsquare] = "yellow";
+		rolecount++;
 		}
 		
 	}
