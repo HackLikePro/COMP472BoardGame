@@ -142,18 +142,50 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 			
 			if ( this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y+1].equals(role) && this.gameresult[x+2][y+1].equals(role) && this.gameresult[x+2][y+2].equals(role))
 			{
-				checkPolarized =  true;		
+				if(nutrolized(role,x,y) == false)
+				{
+					checkPolarized =  true;
+				}		
 				
 			}
 		
 			if ( this.gameresult[x][y].equals(role)&& this.gameresult[x+1][y].equals(role) && this.gameresult[x+1][y-1].equals(role) && this.gameresult[x+2][y-1].equals(role) && this.gameresult[x+2][y-2].equals(role))
 			{
-				checkPolarized =  true;				
+				if(nutrolized(role,x,y) == false)
+				{
+					checkPolarized =  true;
+				}		
+								
 			}
 		
 		
 		return checkPolarized;
 
+	}
+
+
+	private boolean nutrolized(String role, int x , int y) {
+		// TODO Auto-generated method stub
+		String counterplayer = "";
+		if(role.equals("black"))
+		{
+			counterplayer = "yellow"; 
+		}
+		
+		if(role.equals("yellow"))
+		{
+			counterplayer = "black"; 
+		}
+		
+		if ((this.gameresult[x+2][y].equals(counterplayer) && this.gameresult[x][y+2].equals(counterplayer))||((this.gameresult[x+2][y].equals(counterplayer) && this.gameresult[x][y-2].equals(counterplayer))))
+		{
+		    return true;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 
 
@@ -176,7 +208,10 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		this.multi[clickedsquare] = "yellow";
 		rolecount++;
 		}
+		if(!this.multi[clickedsquare].equals("0"))
+		{
 		store2DResult(this.multi , y , x);
+		}
 		
 		
 	}
