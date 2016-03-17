@@ -57,7 +57,7 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		    JPanel square = new JPanel( new BorderLayout() );
 		    chessBoard.add(square);
 		    if(multi[i].equals("1")){
-		    	square.setBackground(Color.RED);
+		    	square.setBackground(Color.white);
 		    	square.setBorder(BorderFactory.createLineBorder(Color.black));
 		    }
 		    else if(multi[i].equals("0")){
@@ -198,7 +198,7 @@ public class PolarizedLadder extends JFrame implements MouseListener, MouseMotio
 		int clickedsquare = x + y*14;
 		if( this.multi[clickedsquare].equals("1") && role == 0)
 		{
-		this.chessBoard.getComponent(clickedsquare).setBackground(Color.BLACK);
+		this.chessBoard.getComponent(clickedsquare).setBackground(Color.red);
 		this.multi[clickedsquare] = "black";
 		rolecount++;
 		}
